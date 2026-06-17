@@ -12,7 +12,7 @@ export default function Home() {
           height={20}
           priority
         />
-        <div className="flex flex-col items-center gap-6 bg-red-50 text-center sm:items-start sm:text-left">
+        <div className="flex flex-col items-center gap-6 bg-zinc-50 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl leading-10 font-semibold tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
           </h1>
