@@ -1,29 +1,26 @@
 "use client";
 
+import { Steps, StepsIcons, StepsTitle } from "@/app/constants/enums/enums";
 import Accordion from "../accordion/accordion";
 import { useState } from "react";
 
 export default function StepOptions() {
-  enum steps {
-    cameras = 1,
-    plans = 2,
-  }
-  const [selectedStep, setSelectedStep] = useState<steps | 0>(steps.cameras);
+  const [selectedStep, setSelectedStep] = useState<Steps | 0>(Steps.cameras);
 
   return (
     <div>
       <Accordion
-        step={steps.cameras}
-        actionBtnLabel="Next: Choose your plan"
-        title="Choose your cameras"
-        icon="assets/icons/livestream-icon.svg"
+        step={Steps.cameras}
+        actionBtnLabel={`Next: ${StepsTitle.plans}`}
+        title={StepsTitle.cameras}
+        icon={StepsIcons.cameras}
         actionBtnHandler={() => {
-          setSelectedStep(steps.plans);
+          setSelectedStep(Steps.plans);
         }}
-        open={selectedStep === steps.cameras}
+        open={selectedStep === Steps.cameras}
         onToggle={() => {
           setSelectedStep((prev) =>
-            prev === steps.cameras ? 0 : steps.cameras,
+            prev === Steps.cameras ? 0 : Steps.cameras,
           );
         }}
       >
@@ -35,17 +32,66 @@ export default function StepOptions() {
           </div>
         </div>
       </Accordion>
+
       <Accordion
-        step={steps.plans}
-        actionBtnLabel="Next: Choose your Camera"
-        title="Choose your plans"
-        icon="assets/icons/sheild-icon.svg"
+        step={Steps.plans}
+        actionBtnLabel={`Next: ${StepsTitle.sensors}`}
+        title={StepsTitle.plans}
+        icon={StepsIcons.plans}
         actionBtnHandler={() => {
-          setSelectedStep(steps.cameras);
+          setSelectedStep(Steps.sensors);
         }}
-        open={selectedStep === steps.plans}
+        open={selectedStep === Steps.plans}
         onToggle={() => {
-          setSelectedStep((prev) => (prev === steps.plans ? 0 : steps.plans));
+          setSelectedStep((prev) => (prev === Steps.plans ? 0 : Steps.plans));
+        }}
+      >
+        <div className="overflow-hidden">
+          <div className="mt-[15px]">
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+          </div>
+        </div>
+      </Accordion>
+
+      <Accordion
+        step={Steps.sensors}
+        actionBtnLabel={`Next: ${StepsTitle.accessories}`}
+        title={StepsTitle.sensors}
+        icon={StepsIcons.sensors}
+        actionBtnHandler={() => {
+          setSelectedStep(Steps.accessories);
+        }}
+        open={selectedStep === Steps.sensors}
+        onToggle={() => {
+          setSelectedStep((prev) =>
+            prev === Steps.sensors ? 0 : Steps.sensors,
+          );
+        }}
+      >
+        <div className="overflow-hidden">
+          <div className="mt-[15px]">
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+          </div>
+        </div>
+      </Accordion>
+
+      <Accordion
+        step={Steps.accessories}
+        actionBtnLabel={`Done`}
+        title={StepsTitle.accessories}
+        icon={StepsIcons.accessories}
+        actionBtnHandler={() => {
+          setSelectedStep(0);
+        }}
+        open={selectedStep === Steps.accessories}
+        onToggle={() => {
+          setSelectedStep((prev) =>
+            prev === Steps.accessories ? 0 : Steps.accessories,
+          );
         }}
       >
         <div className="overflow-hidden">
