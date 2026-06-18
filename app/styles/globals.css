@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "./gilroy-font.css";
+
+:root {
+  /* Colours */
+  --background: #ffffff;
+  --link: #0000ee;
+  --primary: #4e2fd2;
+  --primary-foreground: #edf4ff;
+  --secondary: #1f1f1f;
+  --secondary-foreground: #1f1f1fbf;
+  --secondary-heading: #0b0d10;
+  --secondary-muted: #a8b2bd;
+  --label: #484848;
+  --danger: #d8392b;
+  --success: #0aa288;
+
+  /* Radius */
+  --radius-base: 10px;
+}
+
+@theme inline {
+  /* Colours */
+  --color-background: var(--background);
+  --color-link: var(--link);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-heading: var(--secondary-heading);
+  --color-secondary-muted: var(--secondary-muted);
+  --color-label: var(--label);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  /* Fonts */
+  --font-sans: "Gilroy", sans-serif;
+
+  /* Radius */
+  --radius-base: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --link: #0000ee;
+    --primary: #4e2fd2;
+    --primary-foreground: #edf4ff;
+    --secondary: #1f1f1f;
+    --secondary-foreground: #1f1f1fbf;
+    --secondary-heading: #0b0d10;
+    --secondary-muted: #a8b2bd;
+    --label: #484848;
+    --danger: #d8392b;
+    --success: #0aa288;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Gilroy", sans-serif;
+}
