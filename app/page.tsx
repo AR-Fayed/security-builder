@@ -1,24 +1,11 @@
-import Accordion from "./components/accordion/accordion";
+import StepOptions from "./components/step-options/step-options";
 
 export default function Home() {
   return (
     <main className="grid gap-7 px-[122px] py-[49px] xl:grid-cols-3">
       {/* Builder Column */}
       <div className="xl:col-span-2">
-        <Accordion
-          step={1}
-          defaultOpen
-          title="Choose your cameras"
-          icon="assets/icons/livestream-icon.svg"
-        >
-          <div className="overflow-hidden">
-            <div className="mt-[15px]">
-              <div>haw haw</div>
-              <div>haw haw</div>
-              <div>haw haw</div>
-            </div>
-          </div>
-        </Accordion>
+        <StepOptions />
       </div>
 
       {/* Review Column */}

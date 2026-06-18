@@ -1,25 +1,29 @@
 "use client";
 import { Triangle } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import ActionBtn from "../action-btn/action-btn";
 
 type Props = {
   children: React.ReactNode;
   title: string;
   icon: string;
   step: number;
-  defaultOpen?: boolean;
+  open: boolean;
+  onToggle?: () => void;
+  actionBtnLabel: string;
+  actionBtnHandler?: () => void;
 };
 
 export default function Accordion({
   children,
-  defaultOpen,
+  open,
   title,
   step,
   icon,
+  onToggle,
+  actionBtnHandler,
+  actionBtnLabel,
 }: Props) {
-  const [open, setOpen] = useState(defaultOpen ? true : false);
-
   return (
     <div
       className={`mt-[13px] transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
@@ -34,7 +38,7 @@ export default function Accordion({
       <div className="px-[15px] py-5">
         {/* Step title and Selected Count */}
         <button
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={onToggle}
           className="flex w-full items-center justify-between"
         >
           <h2 className="text-secondary-heading flex items-center gap-2 text-[22px] font-semibold">
@@ -63,7 +67,16 @@ export default function Accordion({
         <div
           className={`grid transition-all duration-300 ease-in-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
         >
-          {children}
+          <div className="flex flex-col gap-[15px] overflow-hidden">
+            {children}
+
+            <ActionBtn
+              label={actionBtnLabel}
+              className="mx-auto px-6 py-2"
+              variant="outline"
+              onClick={actionBtnHandler}
+            />
+          </div>
         </div>
       </div>
 
