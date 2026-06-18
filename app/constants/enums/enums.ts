@@ -7,7 +7,7 @@ export enum Steps {
 
 export enum StepsTitle {
   cameras = "Choose your cameras",
-  plans = "Choose your plans",
+  plans = "Choose your plan",
   sensors = "Choose your sensors",
   accessories = "Add extra Protection",
 }
