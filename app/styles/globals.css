@@ -1,26 +1,39 @@
 @import "tailwindcss";
+@import "./gilroy-font.css";
 
 :root {
+  /* Colours */
   --background: #ffffff;
+  --panel-background: #edf4ff;
   --foreground: #171717;
+
+  /* Radius */
+  --radius-base: 10px;
 }
 
 @theme inline {
+  /* Colours */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-panel-background: var(--panel-background);
+
+  /* Fonts */
+  --font-sans: "Gilroy", sans-serif;
+
+  /* Radius */
+  --radius-base: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --panel-background: #edf4ff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Gilroy", sans-serif;
 }
