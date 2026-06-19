@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Placeholder from "@/public/assets/images/placeholder.webp";
 import Counter from "../counter/counter";
 import {
@@ -39,6 +39,8 @@ export default function ProductCard({
   );
   const variantImage = variants[selectedVariant].image;
   const isEmpty = counts.every((c) => c.count === 0);
+  // Track this card's previous contribution so we can apply a delta
+  const prevCardTotal = useRef(0);
 
   const increment = () =>
     setCounts((prev) =>
@@ -55,16 +57,40 @@ export default function ProductCard({
     );
 
   useEffect(() => {
+    const cardTotal = counts.reduce((sum, c) => sum + c.count, 0);
+    const prevTotal = prevCardTotal.current;
+    const totalDelta = cardTotal - prevTotal;
+    prevCardTotal.current = cardTotal;
+
+    if (totalDelta === 0) return;
+
+    // +1 if this card just became non-empty, -1 if it just became empty, 0 otherwise
+    const countDelta =
+      prevTotal === 0 && cardTotal > 0
+        ? 1
+        : prevTotal > 0 && cardTotal === 0
+          ? -1
+          : 0;
+
     setSelectedCount((prev) => {
       const existing = prev.find((item) => item.step === step);
       if (existing) {
         return prev.map((item) =>
-          item.step === step ? { ...item, count: isEmpty ? 0 : 1 } : item,
+          item.step === step
+            ? {
+                ...item,
+                count: Math.max(0, item.count + countDelta),
+                total: Math.max(0, item.total + totalDelta),
+              }
+            : item,
         );
       }
-      return [...prev, { step, count: isEmpty ? 0 : 1 }];
+      return [
+        ...prev,
+        { step, count: cardTotal > 0 ? 1 : 0, total: cardTotal },
+      ];
     });
-  }, [counts, step, setSelectedCount, isEmpty]);
+  }, [counts, step, setSelectedCount]);
 
   return (
     <div

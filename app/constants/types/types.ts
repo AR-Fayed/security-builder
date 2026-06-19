@@ -4,7 +4,8 @@ export type StepValue = (typeof Steps)[keyof typeof Steps]; // 1 | 2 | 3 | 4
 
 export type ProductsPerStep = {
   step: StepValue;
-  count: number;
+  count: number; // distinct products with qty > 0
+  total: number; // sum of all quantities
 };
 
 export type Variant = {
