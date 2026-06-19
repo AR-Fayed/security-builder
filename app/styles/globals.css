@@ -4,6 +4,7 @@
 :root {
   /* Colours */
   --background: #ffffff;
+  --background-counter: #f0f4f7;
   --link: #0000ee;
   --primary: #4e2fd2;
   --primary-foreground: #edf4ff;
@@ -11,9 +12,15 @@
   --secondary-foreground: #1f1f1fbf;
   --secondary-heading: #0b0d10;
   --secondary-muted: #a8b2bd;
+  --price: #575757;
   --label: #484848;
   --danger: #d8392b;
   --success: #0aa288;
+  --chosen: #1df0bb0a;
+  --counter-muted: #e6ebf0;
+  --border-primary: #4e2fd2b2;
+  --border-chosen: #0aa288;
+  --border-muted: #cccccc;
 
   /* Radius */
   --radius-base: 10px;
@@ -22,6 +29,7 @@
 @theme inline {
   /* Colours */
   --color-background: var(--background);
+  --color-background-counter: var(--background-counter);
   --color-link: var(--link);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -29,9 +37,15 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-heading: var(--secondary-heading);
   --color-secondary-muted: var(--secondary-muted);
+  --color-price: var(--price);
   --color-label: var(--label);
   --color-danger: var(--danger);
   --color-success: var(--success);
+  --color-chosen: var(--chosen);
+  --color-counter-muted: var(--counter-muted);
+  --color-border-primary: var(--border-primary);
+  --color-border-chosen: var(--border-chosen);
+  --color-border-muted: var(--border-muted);
 
   /* Fonts */
   --font-sans: "Gilroy", sans-serif;
@@ -44,6 +58,8 @@
   --radius-base: 10px;
 
   /* Spacing */
+  --spacing-10px: 10px;
+  --spacing-11px: 11px;
   --spacing-13px: 13px;
   --spacing-15px: 15px;
   --spacing-49px: 49px;
@@ -52,7 +68,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
+    --background-counter: #f0f4f7;
     --link: #0000ee;
     --primary: #4e2fd2;
     --primary-foreground: #edf4ff;
@@ -60,9 +77,15 @@
     --secondary-foreground: #1f1f1fbf;
     --secondary-heading: #0b0d10;
     --secondary-muted: #a8b2bd;
+    --price: #575757;
     --label: #484848;
     --danger: #d8392b;
     --success: #0aa288;
+    --chosen: #1df0bb0a;
+    --counter-muted: #e6ebf0;
+    --border-primary: #4e2fd2b2;
+    --border-chosen: #0aa288;
+    --border-muted: #cccccc;
   }
 }
 

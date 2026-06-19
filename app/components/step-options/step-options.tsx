@@ -3,6 +3,7 @@
 import { Steps, StepsIcons, StepsTitle } from "@/app/constants/enums/enums";
 import Accordion from "../accordion/accordion";
 import { useState } from "react";
+import ProductCard from "../product-card/product-card";
 
 export default function StepOptions() {
   const [selectedStep, setSelectedStep] = useState<Steps | 0>(Steps.cameras);
@@ -25,10 +26,31 @@ export default function StepOptions() {
         }}
       >
         <div className="overflow-hidden">
-          <div className="mt-15px">
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
+          <div className="mt-15px flex">
+            <ProductCard
+              name="Wyze Cam v4"
+              description="The clearest Wyze Cam ever made."
+              originalPrice={35.98}
+              discountedPrice={27.98}
+              savePercent={22}
+              variants={[
+                {
+                  label: "White",
+                  image: "/assets/images/wyze-cam-v4-white.png",
+                  count: 1,
+                },
+                {
+                  label: "Grey",
+                  image: "/assets/images/wyze-cam-v4-grey.png",
+                  count: 0,
+                },
+                {
+                  label: "Black",
+                  image: "/assets/images/wyze-cam-v4-black.png",
+                  count: 0,
+                },
+              ]}
+            />
           </div>
         </div>
       </Accordion>
