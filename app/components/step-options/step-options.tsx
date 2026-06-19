@@ -4,13 +4,24 @@ import { Steps, StepsIcons, StepsTitle } from "@/app/constants/enums/enums";
 import Accordion from "../accordion/accordion";
 import { useState } from "react";
 import ProductCard from "../product-card/product-card";
+import { ProductsPerStep } from "@/app/constants/types/types";
 
 export default function StepOptions() {
   const [selectedStep, setSelectedStep] = useState<Steps | 0>(Steps.cameras);
 
+  const [selectedCounts, setSelectedCounts] = useState<ProductsPerStep[]>([
+    { step: Steps.cameras, count: 0 },
+    { step: Steps.plans, count: 0 },
+    { step: Steps.sensors, count: 0 },
+    { step: Steps.accessories, count: 0 },
+  ]);
+
   return (
     <div>
       <Accordion
+        selectedCount={
+          selectedCounts.find((c) => c.step === Steps.cameras)?.count
+        }
         step={Steps.cameras}
         actionBtnLabel={`Next: ${StepsTitle.plans}`}
         title={StepsTitle.cameras}
@@ -28,6 +39,8 @@ export default function StepOptions() {
         <div className="overflow-hidden">
           <div className="mt-15px flex">
             <ProductCard
+              step={Steps.cameras}
+              setSelectedCount={setSelectedCounts}
               name="Wyze Cam v4"
               description="The clearest Wyze Cam ever made."
               originalPrice={35.98}

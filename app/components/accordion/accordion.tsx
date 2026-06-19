@@ -12,6 +12,7 @@ type Props = {
   onToggle?: () => void;
   actionBtnLabel: string;
   actionBtnHandler?: () => void;
+  selectedCount?: number;
 };
 
 export default function Accordion({
@@ -23,6 +24,7 @@ export default function Accordion({
   onToggle,
   actionBtnHandler,
   actionBtnLabel,
+  selectedCount,
 }: Props) {
   return (
     <div
@@ -53,7 +55,7 @@ export default function Accordion({
             <p
               className={`transition-all duration-300 ease-in-out ${open ? "" : "opacity-0"}`}
             >
-              2 selected
+              {selectedCount || 0} selected
             </p>
             <Triangle
               className={`transition-all duration-300 ease-in-out ${open ? "" : "rotate-180"}`}

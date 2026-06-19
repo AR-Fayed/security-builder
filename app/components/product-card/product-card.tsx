@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { Minus, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
 import Placeholder from "@/public/assets/images/placeholder.webp";
 import Counter from "../counter/counter";
-
-type Variant = {
-  label: string;
-  image?: string;
-  count: number;
-};
+import {
+  ProductsPerStep,
+  StepValue,
+  Variant,
+} from "@/app/constants/types/types";
 
 type Props = {
   name: string;
@@ -20,6 +18,8 @@ type Props = {
   discountedPrice: number;
   savePercent?: number;
   variants: Variant[];
+  step: StepValue;
+  setSelectedCount: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
 };
 
 export default function ProductCard({
@@ -30,6 +30,8 @@ export default function ProductCard({
   discountedPrice,
   savePercent,
   variants,
+  step,
+  setSelectedCount,
 }: Props) {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [counts, setCounts] = useState<Variant[]>(
@@ -51,6 +53,18 @@ export default function ProductCard({
         i === selectedVariant ? { ...c, count: Math.max(0, c.count - 1) } : c,
       ),
     );
+
+  useEffect(() => {
+    setSelectedCount((prev) => {
+      const existing = prev.find((item) => item.step === step);
+      if (existing) {
+        return prev.map((item) =>
+          item.step === step ? { ...item, count: isEmpty ? 0 : 1 } : item,
+        );
+      }
+      return [...prev, { step, count: isEmpty ? 0 : 1 }];
+    });
+  }, [counts, step, setSelectedCount, isEmpty]);
 
   return (
     <div
