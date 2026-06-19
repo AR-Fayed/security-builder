@@ -72,7 +72,7 @@ export default function ProductCard({
       </div>
 
       {/* Right — details */}
-      <div className="gap-10px flex flex-col">
+      <div className="flex flex-col gap-2.5">
         {/* Title + description */}
         <div>
           <h3 className="text-secondary mb-2 font-semibold">{name}</h3>
