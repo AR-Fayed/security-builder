@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import Placeholder from "@/public/assets/images/placeholder.webp";
+import Counter from "../counter/counter";
 
 type Variant = {
   label: string;
@@ -116,23 +117,12 @@ export default function ProductCard({
         {/* Counter + Price */}
         <div className="flex items-center justify-between">
           {/* Counter */}
-          <div className="flex items-center gap-2.5 p-1.5">
-            <button
-              onClick={decrement}
-              className={`${counts[selectedVariant].count === 0 ? "text-counter-muted border-counter-muted" : "text-label bg-background-counter hover:text-primary border-background-counter"} rounded-sm border-2 p-0.5 transition-all`}
-            >
-              <Minus size={14} />
-            </button>
-            <span className="text-secondary-heading w-4 text-center font-medium">
-              {counts[selectedVariant].count}
-            </span>
-            <button
-              onClick={increment}
-              className="text-label bg-background-counter border-background-counter hover:text-primary rounded-sm border-2 p-0.5"
-            >
-              <Plus size={14} />
-            </button>
-          </div>
+          <Counter
+            counts={counts}
+            selectedVariant={selectedVariant}
+            increment={increment}
+            decrement={decrement}
+          />
 
           {/* Price */}
           <div className="text-right">
