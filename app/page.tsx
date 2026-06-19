@@ -2,7 +2,7 @@ import StepOptions from "./components/step-options/step-options";
 
 export default function Home() {
   return (
-    <main className="grid gap-7 px-[122px] py-[49px] xl:grid-cols-3">
+    <main className="px-122px py-49px grid gap-7 xl:grid-cols-3">
       {/* Builder Column */}
       <div className="xl:col-span-2">
         <StepOptions />

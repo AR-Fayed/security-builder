@@ -36,8 +36,18 @@
   /* Fonts */
   --font-sans: "Gilroy", sans-serif;
 
+  /* Font sizes */
+  --text-10px: 10px;
+  --text-22px: 22px;
+
   /* Radius */
   --radius-base: 10px;
+
+  /* Spacing */
+  --spacing-13px: 13px;
+  --spacing-15px: 15px;
+  --spacing-49px: 49px;
+  --spacing-122px: 122px;
 }
 
 @media (prefers-color-scheme: dark) {
