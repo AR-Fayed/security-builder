@@ -25,7 +25,7 @@ export default function StepOptions() {
         }}
       >
         <div className="overflow-hidden">
-          <div className="mt-[15px]">
+          <div className="mt-15px">
             <p>test</p>
             <p>test</p>
             <p>test</p>
@@ -47,7 +47,7 @@ export default function StepOptions() {
         }}
       >
         <div className="overflow-hidden">
-          <div className="mt-[15px]">
+          <div className="mt-15px">
             <p>test</p>
             <p>test</p>
             <p>test</p>
@@ -71,7 +71,7 @@ export default function StepOptions() {
         }}
       >
         <div className="overflow-hidden">
-          <div className="mt-[15px]">
+          <div className="mt-15px">
             <p>test</p>
             <p>test</p>
             <p>test</p>
@@ -95,7 +95,7 @@ export default function StepOptions() {
         }}
       >
         <div className="overflow-hidden">
-          <div className="mt-[15px]">
+          <div className="mt-15px">
             <p>test</p>
             <p>test</p>
             <p>test</p>

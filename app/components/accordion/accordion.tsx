@@ -26,22 +26,22 @@ export default function Accordion({
 }: Props) {
   return (
     <div
-      className={`mt-[13px] transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
+      className={`mt-13px transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
     >
       {/* Step header */}
       <p
-        className={`border-secondary border-0.5 text-label border-b px-[15px] pt-[13px] transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-[10px]"} font-medium`}
+        className={`border-secondary border-0.5 text-label px-15px pt-13px border-b transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-10px"} font-medium`}
       >
         STEP {step} OF 4
       </p>
 
-      <div className="px-[15px] py-5">
+      <div className="px-15px py-5">
         {/* Step title and Selected Count */}
         <button
           onClick={onToggle}
           className="flex w-full items-center justify-between"
         >
-          <h2 className="text-secondary-heading flex items-center gap-2 text-[22px] font-semibold">
+          <h2 className="text-secondary-heading text-22px flex items-center gap-2 font-semibold">
             <span>
               {" "}
               <Image src={icon} alt="" width={26} height={26} />
@@ -67,7 +67,7 @@ export default function Accordion({
         <div
           className={`grid transition-all duration-300 ease-in-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
         >
-          <div className="flex flex-col gap-[15px] overflow-hidden">
+          <div className="gap-15px flex flex-col overflow-hidden">
             {children}
 
             <ActionBtn
