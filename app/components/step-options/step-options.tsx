@@ -17,7 +17,7 @@ export default function StepOptions() {
   ]);
 
   return (
-    <div>
+    <div className="space-y-13px">
       <Accordion
         selectedCount={
           selectedCounts.find((c) => c.step === Steps.cameras)?.count

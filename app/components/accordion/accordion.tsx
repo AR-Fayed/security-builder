@@ -28,7 +28,7 @@ export default function Accordion({
 }: Props) {
   return (
     <div
-      className={`mt-13px transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
+      className={`transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
     >
       {/* Step header */}
       <p
