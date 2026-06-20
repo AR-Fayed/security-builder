@@ -176,7 +176,7 @@ export default function ProductCard({
               selectedVariant={selectedVariant}
               increment={increment}
               decrement={decrement}
-              required={product.required}
+              disabledAt={product.required ? 1 : 0}
             />
           ) : (
             <button
