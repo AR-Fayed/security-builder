@@ -167,7 +167,7 @@ export default function ProductCard({
           />
 
           {/* Price */}
-          <div className="text-right">
+          <div className="flex gap-2 text-right xl:flex-col xl:gap-0">
             <p className="text-danger line-through">
               ${originalPrice.toFixed(2)}
             </p>
