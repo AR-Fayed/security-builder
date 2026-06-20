@@ -16,7 +16,7 @@ type Props = {
   learnMoreUrl?: string;
   originalPrice: number;
   discountedPrice: number | null;
-  savePercent?: number | null;
+  savePercent: number | null;
   variants: Variant[];
   step: StepValue;
   setSelectedCount: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
@@ -94,7 +94,7 @@ export default function ProductCard({
 
   return (
     <div
-      className={`rounded-base p-11px ${isEmpty ? "border-white" : "border-border-primary"} flex flex-col gap-4 border-2 bg-white xl:flex-row`}
+      className={`rounded-base p-11px max-w-72 min-w-72 xl:max-w-[47%] ${isEmpty ? "border-white" : "border-border-primary"} flex flex-col gap-4 border-2 bg-white xl:flex-row`}
     >
       {/* Left — image + badge */}
       <div className="relative">
@@ -108,7 +108,7 @@ export default function ProductCard({
           alt={name}
           width={120}
           height={120}
-          className="h-full w-full object-cover xl:w-32"
+          className="h-full w-full object-contain xl:w-32"
         />
       </div>
 
@@ -133,28 +133,30 @@ export default function ProductCard({
         </div>
 
         {/* Variants */}
-        <div className="flex gap-2">
-          {variants.map((variant, i) => (
-            <button
-              key={variant.label}
-              onClick={() => setSelectedVariant(i)}
-              className={`border-0.5 flex items-center gap-1.5 rounded-xs border px-1.5 py-2 text-sm font-medium transition-all duration-200 ${
-                selectedVariant === i
-                  ? "border-border-chosen bg-chosen shadow-sm"
-                  : "border-border-muted text-label bg-transparent"
-              }`}
-            >
-              <Image
-                src={variant.image ?? Placeholder}
-                alt={variant.label}
-                width={16}
-                height={16}
-                className="rounded-full object-cover"
-              />
-              {variant.label}
-            </button>
-          ))}
-        </div>
+        {variants.length > 1 && (
+          <div className="flex gap-2">
+            {variants.map((variant, i) => (
+              <button
+                key={variant.label}
+                onClick={() => setSelectedVariant(i)}
+                className={`border-0.5 flex items-center gap-1.5 rounded-xs border px-1.5 py-2 text-sm font-medium transition-all duration-200 ${
+                  selectedVariant === i
+                    ? "border-border-chosen bg-chosen shadow-sm"
+                    : "border-border-muted text-label bg-transparent"
+                }`}
+              >
+                <Image
+                  src={variant.image ?? Placeholder}
+                  alt={variant.label}
+                  width={16}
+                  height={16}
+                  className="rounded-full object-cover"
+                />
+                {variant.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Counter + Price */}
         <div className="flex items-center justify-between">
@@ -168,12 +170,17 @@ export default function ProductCard({
 
           {/* Price */}
           <div className="flex gap-2 text-right xl:flex-col xl:gap-0">
-            <p className="text-danger line-through">
-              ${originalPrice.toFixed(2)}
-            </p>
-            <p className="text-price">
-              ${discountedPrice ? discountedPrice.toFixed(2) : originalPrice}
-            </p>
+            {discountedPrice !== null ? (
+              <>
+                <p className="text-danger line-through">
+                  ${originalPrice.toFixed(2)}
+                </p>
+
+                <p className="text-price">${discountedPrice?.toFixed(2)}</p>
+              </>
+            ) : (
+              <p className="text-price">${originalPrice.toFixed(2)}</p>
+            )}
           </div>
         </div>
       </div>
