@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Placeholder from "@/public/assets/images/placeholder.webp";
 import Counter from "../counter/counter";
 import {
@@ -14,19 +14,17 @@ import {
 type Props = {
   product: Product;
   learnMoreUrl?: string;
-  step: StepValue;
-  setSelectedCount: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
+  setSelectedProducts: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
 };
 
 export default function ProductCard({
   product,
   learnMoreUrl = "#",
-  step,
-  setSelectedCount,
+  setSelectedProducts,
 }: Props) {
   const defaultProductCount = product.required ? 1 : 0;
   const [selectedVariant, setSelectedVariant] = useState(0);
-  const [counts, setCounts] = useState<Variant[]>(
+  const [variantCounts, setVariantCounts] = useState<Variant[]>(
     product.variants.map((v) => ({ ...v, count: defaultProductCount })),
   );
 
@@ -34,20 +32,18 @@ export default function ProductCard({
     product.variants && product.variants.length > 0
       ? product.variants[selectedVariant].image
       : product.masterImage;
-  const isEmpty = counts.every((c) => c.count === 0);
-  // Track this card's previous contribution so we can apply a delta
-  const prevCardTotal = useRef(0);
+  const isEmpty = variantCounts.every((c) => c.count === 0);
 
   const increment = () =>
-    setCounts((prev) =>
+    setVariantCounts((prev) =>
       prev.map((c, i) =>
         i === selectedVariant ? { ...c, count: c.count + 1 } : c,
       ),
     );
 
   const decrement = () => {
-    if (product.required && counts[selectedVariant].count === 1) return;
-    setCounts((prev) =>
+    if (product.required && variantCounts[selectedVariant].count === 1) return;
+    setVariantCounts((prev) =>
       prev.map((c, i) =>
         i === selectedVariant ? { ...c, count: Math.max(0, c.count - 1) } : c,
       ),
@@ -56,50 +52,33 @@ export default function ProductCard({
 
   // For products with no variants
   const toggleProduct = () => {
-    setCounts((prev) => {
+    setVariantCounts((prev) => {
       const exists = prev.find((c) => c.label === product.name);
       if (exists) {
         return prev.filter((c) => c.label !== product.name);
       }
-      return [...prev, { id: product.id, label: product.name, count: 1 }];
+      return [...prev, { label: product.name, count: 1 }];
     });
   };
 
   useEffect(() => {
-    const cardTotal = counts.reduce((sum, c) => sum + c.count, 0);
-    const prevTotal = prevCardTotal.current;
-    const totalDelta = cardTotal - prevTotal;
-    prevCardTotal.current = cardTotal;
+    setSelectedProducts((prev) => {
+      // Filter out any previous entries for this product
+      const filtered = prev.filter((item) => item.id !== product.id);
 
-    if (totalDelta === 0) return;
+      // Create new entries for variants of this product that have count > 0
+      const newSelections = variantCounts
+        .filter((c) => c.count > 0)
+        .map((c) => ({
+          id: product.id,
+          step: product.step as StepValue,
+          count: c.count,
+          variantLabel: c.label,
+        }));
 
-    // +1 if this card just became non-empty, -1 if it just became empty, 0 otherwise
-    const countDelta =
-      prevTotal === 0 && cardTotal > 0
-        ? 1
-        : prevTotal > 0 && cardTotal === 0
-          ? -1
-          : 0;
-
-    setSelectedCount((prev) => {
-      const existing = prev.find((item) => item.step === step);
-      if (existing) {
-        return prev.map((item) =>
-          item.step === step
-            ? {
-                ...item,
-                count: Math.max(0, item.count + countDelta),
-                total: Math.max(0, item.total + totalDelta),
-              }
-            : item,
-        );
-      }
-      return [
-        ...prev,
-        { step, count: cardTotal > 0 ? 1 : 0, total: cardTotal },
-      ];
+      return [...filtered, ...newSelections];
     });
-  }, [counts, step, setSelectedCount]);
+  }, [variantCounts, product, setSelectedProducts]);
 
   return (
     <div
@@ -172,7 +151,7 @@ export default function ProductCard({
           {/* Counter */}
           {product.variants.length > 0 ? (
             <Counter
-              counts={counts}
+              variantCounts={variantCounts}
               selectedVariant={selectedVariant}
               increment={increment}
               decrement={decrement}
@@ -182,12 +161,12 @@ export default function ProductCard({
             <button
               onClick={toggleProduct}
               className={`border-0.5 flex items-center gap-1.5 rounded-xs border px-1.5 py-2 text-sm font-medium transition-all duration-200 ${
-                counts.length > 0
+                variantCounts.length > 0
                   ? "border-border-chosen bg-chosen shadow-sm"
                   : "border-border-muted text-label bg-transparent"
               }`}
             >
-              {counts.length > 0 ? "Remove" : "Add"}
+              {variantCounts.length > 0 ? "Remove" : "Add"}
             </button>
           )}
 

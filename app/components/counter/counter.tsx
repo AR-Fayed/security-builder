@@ -2,7 +2,7 @@ import { Minus, Plus } from "lucide-react";
 
 type Props = {
   selectedVariant: number;
-  counts: { label: string; count: number }[];
+  variantCounts: { label: string; count: number }[];
   increment: () => void;
   decrement: () => void;
   disabledAt?: number;
@@ -10,7 +10,7 @@ type Props = {
 
 export default function Counter({
   selectedVariant,
-  counts,
+  variantCounts,
   increment,
   decrement,
   disabledAt = 0,
@@ -19,13 +19,13 @@ export default function Counter({
     <div className="flex items-center gap-2.5 p-1.5">
       <button
         onClick={decrement}
-        disabled={counts[selectedVariant].count === disabledAt}
-        className={`${counts[selectedVariant].count === disabledAt ? "text-counter-muted border-counter-muted" : "text-label bg-background-counter hover:text-primary border-background-counter"} rounded-sm border-2 p-0.5 transition-all`}
+        disabled={variantCounts[selectedVariant].count === disabledAt}
+        className={`${variantCounts[selectedVariant].count === disabledAt ? "text-counter-muted border-counter-muted" : "text-label bg-background-counter hover:text-primary border-background-counter"} rounded-sm border-2 p-0.5 transition-all`}
       >
         <Minus size={14} />
       </button>
       <span className="text-secondary-heading w-4 text-center font-medium">
-        {counts[selectedVariant].count}
+        {variantCounts[selectedVariant].count}
       </span>
       <button
         onClick={increment}

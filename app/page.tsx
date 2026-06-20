@@ -1,4 +1,4 @@
-import StepOptions from "./components/step-options/step-options";
+import Builder from "./components/builder/builder";
 import { getProducts } from "./lib/api";
 
 export default async function Home() {
@@ -10,15 +10,7 @@ export default async function Home() {
         Let&#39;s get started!
       </h1>
 
-      {/* Builder Column */}
-      <div className="xl:col-span-2">
-        <StepOptions products={products} />
-      </div>
-
-      {/* Review Column */}
-      <div className="bg-primary-foreground rounded-base px-16 py-16 xl:col-span-1">
-        <h1 className="font-bold text-black">Review Your Build</h1>
-      </div>
+      <Builder products={products} />
     </main>
   );
 }
