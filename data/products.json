@@ -86,7 +86,7 @@
     "variants": [
       {
         "id": "wyze-duo-cam-doorbell",
-        "label": "black",
+        "label": "Black",
         "image": "/assets/images/wyze-duo-cam-doorbell.png"
       }
     ]
@@ -124,7 +124,13 @@
     "price": 12.99,
     "discountedPrice": 9.99,
     "learnMoreUrl": "#",
-    "image": "/assets/icons/plan-icon.svg"
+    "variants": [
+      {
+        "id": "cam-unlimited-plan",
+        "label": "Default",
+        "image": "/assets/icons/plan-icon.svg"
+      }
+    ]
   },
   {
     "id": "cam-plus-plan",
@@ -136,7 +142,13 @@
     "price": 1.99,
     "discountedPrice": null,
     "learnMoreUrl": "#",
-    "image": "/assets/images/cam-plus.png"
+    "variants": [
+      {
+        "id": "cam-plus-plan",
+        "label": "Default",
+        "image": "/assets/images/cam-plus.png"
+      }
+    ]
   },
   {
     "id": "fast-shipping",
@@ -148,7 +160,13 @@
     "price": 5.99,
     "discountedPrice": 0,
     "learnMoreUrl": "#",
-    "image": "/assets/images/cam-plus.png"
+    "variants": [
+      {
+        "id": "fast-shipping",
+        "label": "Default",
+        "image": "/assets/images/cam-plus.png"
+      }
+    ]
   },
   {
     "id": "wyze-sense-motion-sensor",
@@ -160,8 +178,13 @@
     "price": 59.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-sense-motion.png"
+    "variants": [
+      {
+        "id": "wyze-sense-motion-sensor",
+        "label": "Default",
+        "image": "/assets/images/wyze-sense-motion.png"
+      }
+    ]
   },
   {
     "id": "wyze-sense-hub",
@@ -173,8 +196,13 @@
     "price": 29.92,
     "discountedPrice": 0,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-sense-hub.png"
+    "variants": [
+      {
+        "id": "wyze-sense-hub",
+        "label": "Default",
+        "image": "/assets/images/wyze-sense-hub.png"
+      }
+    ]
   },
   {
     "id": "wyze-microsd-card",
@@ -186,7 +214,12 @@
     "price": 20.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-microsd-card.png"
+    "variants": [
+      {
+        "id": "wyze-microsd-card",
+        "label": "Default",
+        "image": "/assets/images/wyze-microsd-card.png"
+      }
+    ]
   }
 ]

@@ -4,9 +4,9 @@ import { Steps, StepsIcons, StepsTitle } from "@/app/constants/enums/enums";
 import Accordion from "../accordion/accordion";
 import { useState } from "react";
 import ProductCard from "../product-card/product-card";
-import { ProductsPerStep } from "@/app/constants/types/types";
+import { Product, ProductsPerStep } from "@/app/constants/types/types";
 
-export default function StepOptions() {
+export default function StepOptions({ products }: { products: Product[] }) {
   const [selectedStep, setSelectedStep] = useState<Steps | 0>(Steps.cameras);
 
   const [selectedCounts, setSelectedCounts] = useState<ProductsPerStep[]>([
