@@ -12,6 +12,7 @@ type Props = {
   onToggle?: () => void;
   actionBtnLabel: string;
   actionBtnHandler?: () => void;
+  selectedCount?: number;
 };
 
 export default function Accordion({
@@ -23,14 +24,15 @@ export default function Accordion({
   onToggle,
   actionBtnHandler,
   actionBtnLabel,
+  selectedCount,
 }: Props) {
   return (
     <div
-      className={`mt-13px transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
+      className={`transition-all duration-300 ease-in-out ${open ? "rounded-base bg-primary-foreground" : ""}`}
     >
       {/* Step header */}
       <p
-        className={`border-secondary border-0.5 text-label px-15px pt-13px border-b transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-10px"} font-medium`}
+        className={`border-secondary border-0.5 text-label px-15px pt-13px border-b pb-1 transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-10px"} font-medium`}
       >
         STEP {step} OF 4
       </p>
@@ -41,10 +43,16 @@ export default function Accordion({
           onClick={onToggle}
           className="flex w-full items-center justify-between"
         >
-          <h2 className="text-secondary-heading text-22px flex items-center gap-2 font-semibold">
+          <h2 className="text-secondary-heading xl:text-22px flex items-center gap-2 text-lg font-semibold">
             <span>
               {" "}
-              <Image src={icon} alt="" width={26} height={26} />
+              <Image
+                src={icon}
+                alt=""
+                width={26}
+                height={26}
+                className="h-5 w-5 xl:h-full xl:w-full"
+              />
             </span>
             {title}
           </h2>
@@ -53,7 +61,7 @@ export default function Accordion({
             <p
               className={`transition-all duration-300 ease-in-out ${open ? "" : "opacity-0"}`}
             >
-              2 selected
+              {selectedCount || 0} selected
             </p>
             <Triangle
               className={`transition-all duration-300 ease-in-out ${open ? "" : "rotate-180"}`}
