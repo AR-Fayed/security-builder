@@ -5,6 +5,7 @@ type Props = {
   counts: { label: string; count: number }[];
   increment: () => void;
   decrement: () => void;
+  required?: boolean;
 };
 
 export default function Counter({
@@ -12,12 +13,15 @@ export default function Counter({
   counts,
   increment,
   decrement,
+  required,
 }: Props) {
+  const disabledAt = required ? 1 : 0;
   return (
     <div className="flex items-center gap-2.5 p-1.5">
       <button
         onClick={decrement}
-        className={`${counts[selectedVariant].count === 0 ? "text-counter-muted border-counter-muted" : "text-label bg-background-counter hover:text-primary border-background-counter"} rounded-sm border-2 p-0.5 transition-all`}
+        disabled={required}
+        className={`${counts[selectedVariant].count === disabledAt ? "text-counter-muted border-counter-muted" : "text-label bg-background-counter hover:text-primary border-background-counter"} rounded-sm border-2 p-0.5 transition-all`}
       >
         <Minus size={14} />
       </button>

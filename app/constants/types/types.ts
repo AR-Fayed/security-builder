@@ -24,5 +24,6 @@ export type Product = {
   price: number;
   discountedPrice: number | null;
   learnMoreUrl: string;
+  masterImage: string;
   variants: Variant[];
 };

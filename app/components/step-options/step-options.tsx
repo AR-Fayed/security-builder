@@ -48,12 +48,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
                   key={product.id}
                   step={product.step}
                   setSelectedCount={setSelectedCounts}
-                  name={product.name}
-                  description={product.description}
-                  originalPrice={product.price}
-                  discountedPrice={product.discountedPrice}
-                  savePercent={product.discount}
-                  variants={product.variants}
+                  product={product}
                 />
               );
             })}
@@ -85,12 +80,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
                   key={product.id}
                   step={product.step}
                   setSelectedCount={setSelectedCounts}
-                  name={product.name}
-                  description={product.description}
-                  originalPrice={product.price}
-                  discountedPrice={product.discountedPrice}
-                  savePercent={product.discount}
-                  variants={product.variants}
+                  product={product}
                 />
               );
             })}
@@ -124,12 +114,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
                   key={product.id}
                   step={product.step}
                   setSelectedCount={setSelectedCounts}
-                  name={product.name}
-                  description={product.description}
-                  originalPrice={product.price}
-                  discountedPrice={product.discountedPrice}
-                  savePercent={product.discount}
-                  variants={product.variants}
+                  product={product}
                 />
               );
             })}
@@ -163,12 +148,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
                   key={product.id}
                   step={product.step}
                   setSelectedCount={setSelectedCounts}
-                  name={product.name}
-                  description={product.description}
-                  originalPrice={product.price}
-                  discountedPrice={product.discountedPrice}
-                  savePercent={product.discount}
-                  variants={product.variants}
+                  product={product}
                 />
               );
             })}
