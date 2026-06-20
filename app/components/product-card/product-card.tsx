@@ -15,8 +15,8 @@ type Props = {
   description: string;
   learnMoreUrl?: string;
   originalPrice: number;
-  discountedPrice: number;
-  savePercent?: number;
+  discountedPrice: number | null;
+  savePercent?: number | null;
   variants: Variant[];
   step: StepValue;
   setSelectedCount: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
@@ -171,7 +171,9 @@ export default function ProductCard({
             <p className="text-danger line-through">
               ${originalPrice.toFixed(2)}
             </p>
-            <p className="text-price">${discountedPrice.toFixed(2)}</p>
+            <p className="text-price">
+              ${discountedPrice ? discountedPrice.toFixed(2) : originalPrice}
+            </p>
           </div>
         </div>
       </div>

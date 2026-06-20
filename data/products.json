@@ -87,7 +87,7 @@
       {
         "id": "wyze-duo-cam-doorbell",
         "label": "Black",
-        "image": "/assets/images/wyze-duo-cam-doorbell.png"
+        "image": "/assets/images/wyze-duo-cam-doorbell-black.png"
       }
     ]
   },
@@ -133,24 +133,6 @@
     ]
   },
   {
-    "id": "cam-plus-plan",
-    "step": 2,
-    "name": "Cam Plus",
-    "description": "AI detection and cloud storage per camera.",
-    "required": false,
-    "discount": null,
-    "price": 1.99,
-    "discountedPrice": null,
-    "learnMoreUrl": "#",
-    "variants": [
-      {
-        "id": "cam-plus-plan",
-        "label": "Default",
-        "image": "/assets/images/cam-plus.png"
-      }
-    ]
-  },
-  {
     "id": "fast-shipping",
     "step": 2,
     "name": "Fast Shipping",
@@ -164,7 +146,7 @@
       {
         "id": "fast-shipping",
         "label": "Default",
-        "image": "/assets/images/cam-plus.png"
+        "image": "/assets/icons/delivery-icon.svg"
       }
     ]
   },
@@ -192,9 +174,9 @@
     "name": "Wyze Sense Hub (Required)",
     "description": "The brain of your Wyze security system.",
     "required": true,
-    "discount": 100,
+    "discount": null,
     "price": 29.92,
-    "discountedPrice": 0,
+    "discountedPrice": null,
     "learnMoreUrl": "#",
     "variants": [
       {
@@ -218,7 +200,7 @@
       {
         "id": "wyze-microsd-card",
         "label": "Default",
-        "image": "/assets/images/wyze-microsd-card.png"
+        "image": "/assets/images/wyze-microsd-card-256gb.png"
       }
     ]
   }
