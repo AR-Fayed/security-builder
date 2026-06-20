@@ -94,10 +94,10 @@ export default function ProductCard({
 
   return (
     <div
-      className={`rounded-base p-11px ${isEmpty ? "border-white" : "border-border-primary"} flex gap-4 border-2 bg-white`}
+      className={`rounded-base p-11px ${isEmpty ? "border-white" : "border-border-primary"} flex flex-col gap-4 border-2 bg-white xl:flex-row`}
     >
       {/* Left — image + badge */}
-      <div className="relative flex">
+      <div className="relative">
         {savePercent && (
           <span className="bg-primary absolute top-0 left-0 rounded-full px-1.5 py-0.5 text-xs font-semibold text-white">
             Save {savePercent}%
@@ -108,7 +108,7 @@ export default function ProductCard({
           alt={name}
           width={120}
           height={120}
-          className="object-cover"
+          className="h-full w-full object-cover xl:w-32"
         />
       </div>
 
@@ -116,13 +116,15 @@ export default function ProductCard({
       <div className="flex flex-col gap-2.5">
         {/* Title + description */}
         <div>
-          <h3 className="text-secondary mb-2 font-semibold">{name}</h3>
-          <p className="text-secondary-foreground flex flex-col text-xs font-medium">
+          <h3 className="text-secondary mb-2 text-lg font-semibold xl:text-base">
+            {name}
+          </h3>
+          <p className="text-secondary-foreground flex flex-col text-sm font-medium xl:text-xs">
             {description}
             <span>
               <a
                 href={learnMoreUrl}
-                className="text-link text-xs font-medium underline"
+                className="text-link font-medium underline"
               >
                 Learn More
               </a>
