@@ -9,6 +9,7 @@
     "price": 35.98,
     "discountedPrice": 27.98,
     "learnMoreUrl": "#",
+    "masterImage": "/assets/images/wyze-cam-v4-white.png",
     "variants": [
       {
         "id": "wyze-cam-v4-white",
@@ -37,6 +38,7 @@
     "price": 57.98,
     "discountedPrice": 47.98,
     "learnMoreUrl": "#",
+    "masterImage": "/assets/images/wyze-cam-pan-v3-white.png",
     "variants": [
       {
         "id": "wyze-cam-pan-v3-white",
@@ -60,6 +62,7 @@
     "price": 89.98,
     "discountedPrice": 69.98,
     "learnMoreUrl": "#",
+    "masterImage": "/assets/images/wyze-cam-floodlight-v2-white.png",
     "variants": [
       {
         "id": "wyze-cam-floodlight-v2-white",
@@ -83,11 +86,12 @@
     "price": 69.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
+    "masterImage": "/assets/images/wyze-duo-cam-doorbell-black.png",
     "variants": [
       {
         "id": "wyze-duo-cam-doorbell",
-        "label": "black",
-        "image": "/assets/images/wyze-duo-cam-doorbell.png"
+        "label": "Black",
+        "image": "/assets/images/wyze-duo-cam-doorbell-black.png"
       }
     ]
   },
@@ -101,6 +105,7 @@
     "price": 89.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
+    "masterImage": "/assets/images/wyze-battery-cam-pro-white.png",
     "variants": [
       {
         "id": "wyze-battery-cam-pro-white",
@@ -124,19 +129,8 @@
     "price": 12.99,
     "discountedPrice": 9.99,
     "learnMoreUrl": "#",
-    "image": "/assets/icons/plan-icon.svg"
-  },
-  {
-    "id": "cam-plus-plan",
-    "step": 2,
-    "name": "Cam Plus",
-    "description": "AI detection and cloud storage per camera.",
-    "required": false,
-    "discount": null,
-    "price": 1.99,
-    "discountedPrice": null,
-    "learnMoreUrl": "#",
-    "image": "/assets/images/cam-plus.png"
+    "masterImage": "/assets/icons/plan-icon.svg",
+    "variants": []
   },
   {
     "id": "fast-shipping",
@@ -148,7 +142,8 @@
     "price": 5.99,
     "discountedPrice": 0,
     "learnMoreUrl": "#",
-    "image": "/assets/images/cam-plus.png"
+    "masterImage": "/assets/icons/delivery-icon.svg",
+    "variants": []
   },
   {
     "id": "wyze-sense-motion-sensor",
@@ -160,8 +155,14 @@
     "price": 59.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-sense-motion.png"
+    "masterImage": "/assets/images/wyze-sense-motion.png",
+    "variants": [
+      {
+        "id": "wyze-sense-motion-sensor",
+        "label": "Default",
+        "image": "/assets/images/wyze-sense-motion.png"
+      }
+    ]
   },
   {
     "id": "wyze-sense-hub",
@@ -169,12 +170,18 @@
     "name": "Wyze Sense Hub (Required)",
     "description": "The brain of your Wyze security system.",
     "required": true,
-    "discount": 100,
+    "discount": null,
     "price": 29.92,
-    "discountedPrice": 0,
+    "discountedPrice": null,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-sense-hub.png"
+    "masterImage": "/assets/images/wyze-sense-hub.png",
+    "variants": [
+      {
+        "id": "wyze-sense-hub",
+        "label": "Default",
+        "image": "/assets/images/wyze-sense-hub.png"
+      }
+    ]
   },
   {
     "id": "wyze-microsd-card",
@@ -186,7 +193,13 @@
     "price": 20.98,
     "discountedPrice": null,
     "learnMoreUrl": "#",
-    "variants": [],
-    "image": "/assets/images/wyze-microsd-card.png"
+    "masterImage": "/assets/images/wyze-microsd-card-256gb.png",
+    "variants": [
+      {
+        "id": "wyze-microsd-card",
+        "label": "Default",
+        "image": "/assets/images/wyze-microsd-card-256gb.png"
+      }
+    ]
   }
 ]

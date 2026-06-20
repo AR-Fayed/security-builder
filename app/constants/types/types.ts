@@ -13,3 +13,17 @@ export type Variant = {
   image?: string;
   count: number;
 };
+
+export type Product = {
+  id: string;
+  step: number;
+  name: string;
+  description: string;
+  required: boolean;
+  discount: number | null;
+  price: number;
+  discountedPrice: number | null;
+  learnMoreUrl: string;
+  masterImage: string;
+  variants: Variant[];
+};
