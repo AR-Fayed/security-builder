@@ -9,6 +9,7 @@ import {
   ProductsPerStep,
   StepValue,
 } from "@/app/constants/types/types";
+import { Steps } from "@/app/constants/enums/enums";
 
 type Props = {
   product: Product;
@@ -24,6 +25,7 @@ export default function ProductCard({
   setSelectedProducts,
 }: Props) {
   const [selectedVariant, setSelectedVariant] = useState(0);
+  const isPlan = product.step === Steps.plans;
 
   // Derive counts directly from selectedProducts — single source of truth.
   // No local state, no sync effects.
@@ -220,10 +222,12 @@ export default function ProductCard({
               <>
                 <p className="text-danger line-through">
                   ${product.price.toFixed(2)}
+                  {isPlan ? "/mo" : ""}
                 </p>
 
                 <p className="text-price">
                   ${product.discountedPrice?.toFixed(2)}
+                  {isPlan ? "/mo" : ""}
                 </p>
               </>
             ) : (
