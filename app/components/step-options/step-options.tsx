@@ -6,26 +6,47 @@ import { useState } from "react";
 import ProductCard from "../product-card/product-card";
 import { Product, ProductsPerStep } from "@/app/constants/types/types";
 
-export default function StepOptions({ products }: { products: Product[] }) {
-  const [selectedStep, setSelectedStep] = useState<Steps | 0>(Steps.cameras);
-  const [selectedCounts, setSelectedCounts] = useState<ProductsPerStep[]>([
-    { step: Steps.cameras, count: 0, total: 0 },
-    { step: Steps.plans, count: 0, total: 0 },
-    { step: Steps.sensors, count: 0, total: 0 },
-    { step: Steps.accessories, count: 0, total: 0 },
-  ]);
+type Props = {
+  products: Product[];
+  selectedProducts: ProductsPerStep[];
+  setSelectedProducts: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
+};
 
-  const step1Products = products.filter((p) => p.step === Steps.cameras);
-  const step2Products = products.filter((p) => p.step === Steps.plans);
-  const step3Products = products.filter((p) => p.step === Steps.sensors);
-  const step4Products = products.filter((p) => p.step === Steps.accessories);
+export default function StepOptions({
+  products,
+  selectedProducts,
+  setSelectedProducts,
+}: Props) {
+  const [selectedStep, setSelectedStep] = useState<Steps>(Steps.cameras);
+
+  const cameraStepProducts = products.filter((p) => p.step === Steps.cameras);
+  const cameraStepCount = new Set(
+    selectedProducts.filter((p) => p.step === Steps.cameras).map((p) => p.id),
+  ).size;
+
+  const planStepProducts = products.filter((p) => p.step === Steps.plans);
+  const planStepCount = new Set(
+    selectedProducts.filter((p) => p.step === Steps.plans).map((p) => p.id),
+  ).size;
+
+  const sensorStepProducts = products.filter((p) => p.step === Steps.sensors);
+  const sensorStepCount = new Set(
+    selectedProducts.filter((p) => p.step === Steps.sensors).map((p) => p.id),
+  ).size;
+
+  const accessoryStepProducts = products.filter(
+    (p) => p.step === Steps.accessories,
+  );
+  const accessoryStepCount = new Set(
+    selectedProducts
+      .filter((p) => p.step === Steps.accessories)
+      .map((p) => p.id),
+  ).size;
 
   return (
     <div className="space-y-13px">
       <Accordion
-        selectedCount={
-          selectedCounts.find((c) => c.step === Steps.cameras)?.count
-        }
+        selectedCount={cameraStepCount}
         step={Steps.cameras}
         actionBtnLabel={`Next: ${StepsTitle.plans}`}
         title={StepsTitle.cameras}
@@ -42,12 +63,12 @@ export default function StepOptions({ products }: { products: Product[] }) {
       >
         <div className="overflow-hidden">
           <div className="mt-15px gap-15px flex flex-wrap justify-center">
-            {step1Products.map((product) => {
+            {cameraStepProducts.map((product) => {
               return (
                 <ProductCard
                   key={product.id}
-                  step={product.step}
-                  setSelectedCount={setSelectedCounts}
+                  selectedProducts={selectedProducts}
+                  setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
               );
@@ -57,9 +78,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
       </Accordion>
 
       <Accordion
-        selectedCount={
-          selectedCounts.find((c) => c.step === Steps.plans)?.count
-        }
+        selectedCount={planStepCount}
         step={Steps.plans}
         actionBtnLabel={`Next: ${StepsTitle.sensors}`}
         title={StepsTitle.plans}
@@ -74,12 +93,12 @@ export default function StepOptions({ products }: { products: Product[] }) {
       >
         <div className="overflow-hidden">
           <div className="mt-15px gap-15px flex flex-wrap justify-center">
-            {step2Products.map((product) => {
+            {planStepProducts.map((product) => {
               return (
                 <ProductCard
                   key={product.id}
-                  step={product.step}
-                  setSelectedCount={setSelectedCounts}
+                  selectedProducts={selectedProducts}
+                  setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
               );
@@ -89,9 +108,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
       </Accordion>
 
       <Accordion
-        selectedCount={
-          selectedCounts.find((c) => c.step === Steps.sensors)?.count
-        }
+        selectedCount={sensorStepCount}
         step={Steps.sensors}
         actionBtnLabel={`Next: ${StepsTitle.accessories}`}
         title={StepsTitle.sensors}
@@ -108,12 +125,12 @@ export default function StepOptions({ products }: { products: Product[] }) {
       >
         <div className="overflow-hidden">
           <div className="mt-15px gap-15px flex flex-wrap justify-center">
-            {step3Products.map((product) => {
+            {sensorStepProducts.map((product) => {
               return (
                 <ProductCard
                   key={product.id}
-                  step={product.step}
-                  setSelectedCount={setSelectedCounts}
+                  selectedProducts={selectedProducts}
+                  setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
               );
@@ -123,9 +140,7 @@ export default function StepOptions({ products }: { products: Product[] }) {
       </Accordion>
 
       <Accordion
-        selectedCount={
-          selectedCounts.find((c) => c.step === Steps.accessories)?.count
-        }
+        selectedCount={accessoryStepCount}
         step={Steps.accessories}
         actionBtnLabel={`Done`}
         title={StepsTitle.accessories}
@@ -142,12 +157,12 @@ export default function StepOptions({ products }: { products: Product[] }) {
       >
         <div className="overflow-hidden">
           <div className="mt-15px gap-15px flex flex-wrap justify-center">
-            {step4Products.map((product) => {
+            {accessoryStepProducts.map((product) => {
               return (
                 <ProductCard
                   key={product.id}
-                  step={product.step}
-                  setSelectedCount={setSelectedCounts}
+                  selectedProducts={selectedProducts}
+                  setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
               );

@@ -1,8 +1,10 @@
 export enum Steps {
+  default = 0,
   cameras = 1,
   plans = 2,
   sensors = 3,
   accessories = 4,
+  shipping = 5,
 }
 
 export enum StepsTitle {

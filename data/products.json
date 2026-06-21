@@ -134,7 +134,7 @@
   },
   {
     "id": "fast-shipping",
-    "step": 2,
+    "step": 5,
     "name": "Fast Shipping",
     "description": "Same Day Delivery",
     "required": false,
