@@ -21,9 +21,6 @@
   --border-primary: #4e2fd2b2;
   --border-chosen: #0aa288;
   --border-muted: #cccccc;
-
-  /* Radius */
-  --radius-base: 10px;
 }
 
 @theme inline {
@@ -53,9 +50,11 @@
   /* Font sizes */
   --text-10px: 10px;
   --text-22px: 22px;
+  --text-28px: 28px;
   --text-32px: 32px;
 
   /* Radius */
+  --radius-half-base: 5px;
   --radius-base: 10px;
 
   /* Spacing */

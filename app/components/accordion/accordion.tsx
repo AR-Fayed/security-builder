@@ -32,7 +32,7 @@ export default function Accordion({
     >
       {/* Step header */}
       <p
-        className={`border-secondary border-0.5 text-label px-15px pt-13px border-b pb-1 transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-10px"} font-medium`}
+        className={`border-secondary border-0.5 text-label px-15px pt-13px border-b pb-1 tracking-widest transition-all duration-300 ease-in-out ${open ? "text-xs" : "text-10px"} font-medium`}
       >
         STEP {step} OF 4
       </p>
