@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Minus, Plus } from "lucide-react";
 import { Product, ProductsPerStep } from "@/app/constants/types/types";
 import { Steps } from "@/app/constants/enums/enums";
 import Placeholder from "@/public/assets/images/placeholder.webp";
