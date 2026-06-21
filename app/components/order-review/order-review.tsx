@@ -177,7 +177,7 @@ export default function OrderReview({
                       return (
                         <div
                           key={`${item.id}-${item.variantLabel}`}
-                          className="flex items-center gap-3 py-2.5"
+                          className="flex items-center justify-between gap-3 py-2.5"
                         >
                           {/* Product image */}
                           <div className="rounded-half-base relative h-9 w-9 bg-white">
@@ -192,7 +192,7 @@ export default function OrderReview({
                           {/* Name */}
                           <div className="min-w-0">
                             <p
-                              className={`text-sm leading-tight font-medium ${
+                              className={`text-sm font-medium ${
                                 isPlan
                                   ? "text-primary font-semibold"
                                   : "text-secondary-heading"
@@ -222,7 +222,7 @@ export default function OrderReview({
                           )}
 
                           {/* Price column */}
-                          <div className="min-w-[56px] text-right">
+                          <div className="text-right">
                             {isFree ? (
                               <>
                                 {hasDiscount && (
