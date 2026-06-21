@@ -173,10 +173,13 @@ export default function OrderReview({
                         item.product.discountedPrice !== null &&
                         item.product.discountedPrice !== item.product.price;
                       const isPerMonth = isPlan;
-
                       const displayPrice = hasDiscount
                         ? item.product.discountedPrice!
                         : item.product.price;
+                      const hasVariantLabel =
+                        item.step !== 5 &&
+                        item.variantLabel !== "Default" &&
+                        item.variantLabel !== "Cam Unlimited";
 
                       return (
                         <div
@@ -203,7 +206,8 @@ export default function OrderReview({
                                     : "text-secondary-heading"
                                 }`}
                               >
-                                {item.product.name}
+                                {item.product.name}{" "}
+                                {hasVariantLabel && `(${item.variantLabel})`}
                               </p>
                             </div>
                           </div>
