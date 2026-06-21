@@ -177,87 +177,91 @@ export default function OrderReview({
                       return (
                         <div
                           key={`${item.id}-${item.variantLabel}`}
-                          className="flex items-center justify-between gap-3 py-2.5"
+                          className="flex items-center justify-between py-2.5"
                         >
-                          {/* Product image */}
-                          <div className="rounded-half-base relative h-9 w-9 bg-white">
-                            <Image
-                              src={item.image || Placeholder}
-                              alt={item.product.name}
-                              fill
-                              className="object-contain"
-                            />
+                          <div className="flex items-center gap-3">
+                            {/* Product image */}
+                            <div className="rounded-half-base relative h-9 w-9 bg-white">
+                              <Image
+                                src={item.image || Placeholder}
+                                alt={item.product.name}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+
+                            {/* Name */}
+                            <div className="min-w-0">
+                              <p
+                                className={`text-sm font-medium ${
+                                  isPlan
+                                    ? "text-primary font-semibold"
+                                    : "text-secondary-heading"
+                                }`}
+                              >
+                                {item.product.name}
+                              </p>
+                            </div>
                           </div>
 
-                          {/* Name */}
-                          <div className="min-w-0">
-                            <p
-                              className={`text-sm font-medium ${
-                                isPlan
-                                  ? "text-primary font-semibold"
-                                  : "text-secondary-heading"
-                              }`}
-                            >
-                              {item.product.name}
-                            </p>
-                          </div>
-
-                          {/* Counter — only for non-plan / non-shipping items */}
-                          {!isPlan && !isShipping && (
-                            <Counter
-                              counterVariant="orderReview"
-                              disabledAt={item.product.required ? 1 : 0}
-                              increment={() =>
-                                handleIncrement(item.id, item.variantLabel)
-                              }
-                              decrement={() =>
-                                handleDecrement(
-                                  item.id,
-                                  item.variantLabel,
-                                  item.product.required,
-                                )
-                              }
-                              count={item.count}
-                            />
-                          )}
-
-                          {/* Price column */}
-                          <div className="text-right">
-                            {isFree ? (
-                              <>
-                                {hasDiscount && (
-                                  <p className="text-price text-sm leading-none font-medium line-through">
-                                    $
-                                    {(item.product.price * item.count).toFixed(
-                                      2,
-                                    )}
-                                  </p>
-                                )}
-                                <p className="text-primary text-sm font-semibold">
-                                  FREE
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {hasDiscount && (
-                                  <p className="text-price text-sm leading-none font-medium line-through">
-                                    $
-                                    {(item.product.price * item.count).toFixed(
-                                      2,
-                                    )}
-                                    {isPerMonth ? "/mo" : ""}
-                                  </p>
-                                )}
-                                <p className="text-primary text-sm font-semibold">
-                                  ${(displayPrice * item.count).toFixed(2)}
-                                  {isPerMonth && (
-                                    <span className="text-sm font-semibold">
-                                      /mo
-                                    </span>
-                                  )}
-                                </p>
-                              </>
+                          <div className="flex items-center gap-3">
+                            {/* Counter — only for non-plan / non-shipping items */}
+                            {!isPlan && !isShipping && (
+                              <Counter
+                                counterVariant="orderReview"
+                                disabledAt={item.product.required ? 1 : 0}
+                                increment={() =>
+                                  handleIncrement(item.id, item.variantLabel)
+                                }
+                                decrement={() =>
+                                  handleDecrement(
+                                    item.id,
+                                    item.variantLabel,
+                                    item.product.required,
+                                  )
+                                }
+                                count={item.count}
+                              />
                             )}
+
+                            {/* Price column */}
+                            <div className="text-right">
+                              {isFree ? (
+                                <>
+                                  {hasDiscount && (
+                                    <p className="text-price text-sm leading-none font-medium line-through">
+                                      $
+                                      {(
+                                        item.product.price * item.count
+                                      ).toFixed(2)}
+                                    </p>
+                                  )}
+                                  <p className="text-primary text-sm font-semibold">
+                                    FREE
+                                  </p>
+                                </>
+                              ) : (
+                                <>
+                                  {hasDiscount && (
+                                    <p className="text-price text-sm leading-none font-medium line-through">
+                                      $
+                                      {(
+                                        item.product.price * item.count
+                                      ).toFixed(2)}
+                                      {isPerMonth ? "/mo" : ""}
+                                    </p>
+                                  )}
+                                  <p className="text-primary text-sm font-semibold">
+                                    ${(displayPrice * item.count).toFixed(2)}
+                                    {isPerMonth && (
+                                      <span className="text-sm font-semibold">
+                                        /mo
+                                      </span>
+                                    )}
+                                  </p>
+                                </>
+                              )}
+                            </div>
                           </div>
                         </div>
                       );
