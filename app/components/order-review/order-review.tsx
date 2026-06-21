@@ -116,7 +116,7 @@ export default function OrderReview({
   const isEmpty = lineItems.length === 0;
 
   return (
-    <div className="bg-primary-foreground rounded-base flex h-full flex-col">
+    <div className="bg-primary-foreground xl:rounded-base flex h-full flex-col">
       <p className="text-label px-15px pt-15px pb-1 text-xs font-medium tracking-widest uppercase">
         Review
       </p>
@@ -133,19 +133,19 @@ export default function OrderReview({
         </div>
 
         {/* Empty state */}
-        {isEmpty && (
-          <div className="flex flex-1 items-center justify-center">
+        {/* {isEmpty && (
+          <div className="flex items-center justify-center">
             <p className="text-secondary-muted text-center text-sm">
               No products selected yet.
               <br />
               Start building your system.
             </p>
           </div>
-        )}
+        )} */}
 
         {/* Line item sections */}
         {!isEmpty && (
-          <div className="flex-1 space-y-4">
+          <div className="space-y-4">
             {SECTIONS.map(({ step, label }) => {
               const items = lineItems.filter(
                 (item) => item.product.step === step,
@@ -181,7 +181,7 @@ export default function OrderReview({
                           className="flex items-center gap-3 py-2.5"
                         >
                           {/* Product image */}
-                          <div className="rounded-half-base relative h-9 w-9 shrink-0 bg-white">
+                          <div className="rounded-half-base relative h-9 w-9 bg-white">
                             <Image
                               src={item.image || Placeholder}
                               alt={item.product.name}
@@ -191,9 +191,9 @@ export default function OrderReview({
                           </div>
 
                           {/* Name */}
-                          <div className="min-w-0 flex-1">
+                          <div className="min-w-0">
                             <p
-                              className={`truncate text-sm leading-tight font-medium ${
+                              className={`text-sm leading-tight font-medium ${
                                 isPlan
                                   ? "text-primary font-semibold"
                                   : "text-secondary-heading"
@@ -223,7 +223,7 @@ export default function OrderReview({
                           )}
 
                           {/* Price column */}
-                          <div className="min-w-[56px] shrink-0 text-right">
+                          <div className="min-w-[56px] text-right">
                             {isFree ? (
                               <>
                                 {hasDiscount && (

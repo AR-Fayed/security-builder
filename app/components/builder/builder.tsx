@@ -48,13 +48,11 @@ export default function Builder({ products }: { products: Product[] }) {
       </div>
 
       {/* Review Column */}
-      {/* <div className="bg-primary-foreground rounded-base px-16 py-16 xl:col-span-1"> */}
       <OrderReview
         products={products}
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
       />
-      {/* </div> */}
     </>
   );
 }
