@@ -1,84 +1,128 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Placeholder from "@/public/assets/images/placeholder.webp";
 import Counter from "../counter/counter";
 import {
   Product,
   ProductsPerStep,
   StepValue,
-  Variant,
 } from "@/app/constants/types/types";
 
 type Props = {
   product: Product;
   learnMoreUrl?: string;
+  selectedProducts: ProductsPerStep[];
   setSelectedProducts: React.Dispatch<React.SetStateAction<ProductsPerStep[]>>;
 };
 
 export default function ProductCard({
   product,
   learnMoreUrl = "#",
+  selectedProducts,
   setSelectedProducts,
 }: Props) {
-  const defaultProductCount = product.required ? 1 : 0;
   const [selectedVariant, setSelectedVariant] = useState(0);
-  const [variantCounts, setVariantCounts] = useState<Variant[]>(
-    product.variants.map((v) => ({ ...v, count: defaultProductCount })),
-  );
+
+  // Derive counts directly from selectedProducts — single source of truth.
+  // No local state, no sync effects.
+  const variantCounts = product.variants.map((productVariant) => {
+    const match = selectedProducts.find(
+      (s) => s.id === product.id && s.variantLabel === productVariant.label,
+    );
+    return { ...productVariant, count: match?.count ?? 0 };
+  });
 
   const variantImage =
     product.variants && product.variants.length > 0
       ? product.variants[selectedVariant].image
       : product.masterImage;
+
   const isEmpty = variantCounts.every((c) => c.count === 0);
 
-  const increment = () =>
-    setVariantCounts((prev) =>
-      prev.map((c, i) =>
-        i === selectedVariant ? { ...c, count: c.count + 1 } : c,
-      ),
-    );
-
-  const decrement = () => {
-    if (product.required && variantCounts[selectedVariant].count === 1) return;
-    setVariantCounts((prev) =>
-      prev.map((c, i) =>
-        i === selectedVariant ? { ...c, count: Math.max(0, c.count - 1) } : c,
-      ),
-    );
-  };
-
-  // For products with no variants
-  const toggleProduct = () => {
-    setVariantCounts((prev) => {
-      const exists = prev.find((c) => c.label === product.name);
-      if (exists) {
-        return prev.filter((c) => c.label !== product.name);
-      }
-      return [...prev, { label: product.name, count: 1 }];
-    });
-  };
-
-  useEffect(() => {
+  const increment = () => {
+    const variant = product.variants[selectedVariant];
+    if (!variant) return;
     setSelectedProducts((prev) => {
-      // Filter out any previous entries for this product
-      const filtered = prev.filter((item) => item.id !== product.id);
-
-      // Create new entries for variants of this product that have count > 0
-      const newSelections = variantCounts
-        .filter((c) => c.count > 0)
-        .map((c) => ({
+      const existing = prev.find(
+        (selectedProduct) =>
+          selectedProduct.id === product.id &&
+          selectedProduct.variantLabel === variant.label,
+      );
+      if (existing) {
+        return prev.map((selectedProduct) =>
+          selectedProduct.id === product.id &&
+          selectedProduct.variantLabel === variant.label
+            ? { ...selectedProduct, count: selectedProduct.count + 1 }
+            : selectedProduct,
+        );
+      }
+      return [
+        ...prev,
+        {
           id: product.id,
           step: product.step as StepValue,
-          count: c.count,
-          variantLabel: c.label,
-        }));
-
-      return [...filtered, ...newSelections];
+          count: 1,
+          variantLabel: variant.label,
+        },
+      ];
     });
-  }, [variantCounts, product, setSelectedProducts]);
+  };
+
+  const decrement = () => {
+    const variant = product.variants[selectedVariant];
+    if (!variant) return;
+    const currentCount = variantCounts[selectedVariant]?.count ?? 0;
+    if (product.required && currentCount <= 1) return;
+    setSelectedProducts((prev) =>
+      prev
+        .map((selectedProduct) =>
+          selectedProduct.id === product.id &&
+          selectedProduct.variantLabel === variant.label
+            ? {
+                ...selectedProduct,
+                count: Math.max(0, selectedProduct.count - 1),
+              }
+            : selectedProduct,
+        )
+        .filter(
+          (selectedProduct) =>
+            !(
+              selectedProduct.id === product.id &&
+              selectedProduct.variantLabel === variant.label &&
+              selectedProduct.count === 0
+            ),
+        ),
+    );
+  };
+
+  // For plan/shipping products with no variants
+  const toggleProduct = () => {
+    setSelectedProducts((prev) => {
+      const exists = prev.find(
+        (selectedProduct) => selectedProduct.id === product.id,
+      );
+      if (exists) {
+        return prev.filter(
+          (selectedProduct) => selectedProduct.id !== product.id,
+        );
+      }
+      return [
+        ...prev,
+        {
+          id: product.id,
+          step: product.step as StepValue,
+          count: 1,
+          variantLabel: product.name,
+        },
+      ];
+    });
+  };
+
+  const isToggled = selectedProducts.some(
+    (selectedProduct) => selectedProduct.id === product.id,
+  );
 
   return (
     <div
@@ -161,12 +205,12 @@ export default function ProductCard({
             <button
               onClick={toggleProduct}
               className={`border-0.5 flex items-center gap-1.5 rounded-xs border px-1.5 py-2 text-sm font-medium transition-all duration-200 ${
-                variantCounts.length > 0
+                isToggled
                   ? "border-border-chosen bg-chosen shadow-sm"
                   : "border-border-muted text-label bg-transparent"
               }`}
             >
-              {variantCounts.length > 0 ? "Remove" : "Add"}
+              {isToggled ? "Remove" : "Add"}
             </button>
           )}
 

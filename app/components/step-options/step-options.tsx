@@ -21,17 +21,17 @@ export default function StepOptions({
 
   const cameraStepProducts = products.filter((p) => p.step === Steps.cameras);
   const cameraStepCount = new Set(
-    selectedProducts.filter((c) => c.step === Steps.cameras).map((c) => c.id),
+    selectedProducts.filter((p) => p.step === Steps.cameras).map((p) => p.id),
   ).size;
 
   const planStepProducts = products.filter((p) => p.step === Steps.plans);
   const planStepCount = new Set(
-    selectedProducts.filter((c) => c.step === Steps.plans).map((c) => c.id),
+    selectedProducts.filter((p) => p.step === Steps.plans).map((p) => p.id),
   ).size;
 
   const sensorStepProducts = products.filter((p) => p.step === Steps.sensors);
   const sensorStepCount = new Set(
-    selectedProducts.filter((c) => c.step === Steps.sensors).map((c) => c.id),
+    selectedProducts.filter((p) => p.step === Steps.sensors).map((p) => p.id),
   ).size;
 
   const accessoryStepProducts = products.filter(
@@ -39,8 +39,8 @@ export default function StepOptions({
   );
   const accessoryStepCount = new Set(
     selectedProducts
-      .filter((c) => c.step === Steps.accessories)
-      .map((c) => c.id),
+      .filter((p) => p.step === Steps.accessories)
+      .map((p) => p.id),
   ).size;
 
   return (
@@ -67,6 +67,7 @@ export default function StepOptions({
               return (
                 <ProductCard
                   key={product.id}
+                  selectedProducts={selectedProducts}
                   setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
@@ -96,6 +97,7 @@ export default function StepOptions({
               return (
                 <ProductCard
                   key={product.id}
+                  selectedProducts={selectedProducts}
                   setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
@@ -127,6 +129,7 @@ export default function StepOptions({
               return (
                 <ProductCard
                   key={product.id}
+                  selectedProducts={selectedProducts}
                   setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
@@ -158,6 +161,7 @@ export default function StepOptions({
               return (
                 <ProductCard
                   key={product.id}
+                  selectedProducts={selectedProducts}
                   setSelectedProducts={setSelectedProducts}
                   product={product}
                 />
