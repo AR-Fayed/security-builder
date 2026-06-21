@@ -30,32 +30,6 @@ export default function OrderReview({
   selectedProducts,
   setSelectedProducts,
 }: Props) {
-  const handleIncrement = (id: string, variantLabel: string) => {
-    setSelectedProducts((prev) =>
-      prev.map((item) =>
-        item.id === id && item.variantLabel === variantLabel
-          ? { ...item, count: item.count + 1 }
-          : item,
-      ),
-    );
-  };
-
-  const handleDecrement = (
-    id: string,
-    variantLabel: string,
-    required: boolean,
-  ) => {
-    setSelectedProducts((prev) =>
-      prev
-        .map((item) =>
-          item.id === id && item.variantLabel === variantLabel
-            ? { ...item, count: Math.max(required ? 1 : 0, item.count - 1) }
-            : item,
-        )
-        .filter((item) => item.count > 0),
-    );
-  };
-
   // Build enriched line items: merge selectedProducts with product catalog data
   const lineItems = selectedProducts
     .map((selected) => {
@@ -113,6 +87,36 @@ export default function OrderReview({
       : planItem?.product.price;
 
   const isEmpty = lineItems.length === 0;
+
+  const handleSaveSystem = () => {
+    localStorage.setItem("selected-bundle", JSON.stringify(lineItems));
+  };
+
+  const handleIncrement = (id: string, variantLabel: string) => {
+    setSelectedProducts((prev) =>
+      prev.map((item) =>
+        item.id === id && item.variantLabel === variantLabel
+          ? { ...item, count: item.count + 1 }
+          : item,
+      ),
+    );
+  };
+
+  const handleDecrement = (
+    id: string,
+    variantLabel: string,
+    required: boolean,
+  ) => {
+    setSelectedProducts((prev) =>
+      prev
+        .map((item) =>
+          item.id === id && item.variantLabel === variantLabel
+            ? { ...item, count: Math.max(required ? 1 : 0, item.count - 1) }
+            : item,
+        )
+        .filter((item) => item.count > 0),
+    );
+  };
 
   return (
     <div className="bg-primary-foreground xl:rounded-base flex h-full flex-col">
@@ -326,6 +330,7 @@ export default function OrderReview({
             {/* Save for later */}
             <p className="text-center">
               <button
+                onClick={handleSaveSystem}
                 id="save-for-later-btn"
                 className="text-secondary-foreground hover:text-secondary text-xs underline underline-offset-2 transition-colors"
               >

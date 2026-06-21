@@ -1,4 +1,4 @@
-import Builder from "./components/builder/builder";
+import BuilderLoader from "./components/builder/builder-loader";
 import { getProducts } from "./lib/api";
 
 export default async function Home() {
@@ -10,7 +10,7 @@ export default async function Home() {
         Let&#39;s get started!
       </h1>
 
-      <Builder products={products} />
+      <BuilderLoader products={products} />
     </main>
   );
 }
