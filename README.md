@@ -18,6 +18,31 @@ A multi-step security product configurator built with **Next.js 16**, **React 19
 - **TypeScript** throughout, with strict linting via ESLint + Prettier
 - **Git hooks** via Husky + lint-staged (auto-formats `.ts`, `.tsx`, `.json`, `.css`, `.md` on commit)
 
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Scripts
+
+| Script          | Description                 |
+| --------------- | --------------------------- |
+| `npm run dev`   | Start the dev server        |
+| `npm run build` | Build for production        |
+| `npm run start` | Start the production server |
+| `npm run lint`  | Run ESLint                  |
+
 ## Tech Stack
 
 | Layer     | Technology              |
@@ -140,28 +165,3 @@ Each product includes:
 | 3    | Sensors     | Wyze Sense Motion Sensor, Wyze Sense Hub _(required)_                                             |
 | 4    | Accessories | Wyze MicroSD Card (256 GB)                                                                        |
 | 5    | Shipping    | Fast Shipping _(free, auto-included)_                                                             |
-
-## Getting Started
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Scripts
-
-| Script          | Description                 |
-| --------------- | --------------------------- |
-| `npm run dev`   | Start the dev server        |
-| `npm run build` | Build for production        |
-| `npm run start` | Start the production server |
-| `npm run lint`  | Run ESLint                  |
