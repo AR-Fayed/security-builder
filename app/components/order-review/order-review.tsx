@@ -322,6 +322,11 @@ export default function OrderReview({
             {/* Checkout button */}
             <button
               id="checkout-btn"
+              onClick={() =>
+                alert(
+                  "🎉 Thank you for your purchase! Your security system is on its way.",
+                )
+              }
               className="bg-primary w-full rounded-xl py-3.5 text-sm font-bold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
             >
               Checkout
